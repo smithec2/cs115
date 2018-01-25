@@ -5,6 +5,14 @@ public class Person {
     private int age;
     private float height;
 
+    public String printPerson(){
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", height=" + height +
+                '}';
+    }
+
     public String getName() {
         return name;
     }
