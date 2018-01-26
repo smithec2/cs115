@@ -107,6 +107,40 @@ public class ConnectFourTest {
         c.addToken(0,"R");
         assertEquals("[R, R, R, R, R, R]", c.convertToString(c.grabColumn(0)));
     }
+@Test
+    public void getRow() throws Exception {
+        ConnectFour c = new ConnectFour();
+         assertEquals("nullnullnullnullnullnullnull",c.getRow(0));
+         c.addToken(0,"R");
+    assertEquals("Rnullnullnullnullnullnull",c.getRow(5));
+
+    }
+@Test
+    public void checkRow() throws Exception {
+        ConnectFour c = new ConnectFour();
+         assertTrue(c.checkRow("RRRR","R"));
+         assertTrue(c.checkRow("RRRRR","R"));
+         assertTrue(c.checkRow("RRRRRR","R"));
+         assertFalse(c.checkRow("RRR","R"));
+         assertFalse(c.checkRow("","R"));
+
+    }
+
+    @Test
+    public void checkRows() throws Exception {
+        ConnectFour c = new ConnectFour();
+
+         assertFalse(c.checkRows("R"));
+         c.addToken(0,"R");
+        assertFalse(c.checkRows("R"));
+        c.addToken(1,"R");
+        c.addToken(0,"R");
+        c.addToken(0,"R");
+        c.addToken(0,"R");
+        c.addToken(0,"R");
+
+
+    }
 
     @Test
     public void checkOneColumn() throws Exception {
@@ -126,28 +160,28 @@ public class ConnectFourTest {
     @Test
     public void checkHorizontal() throws Exception {
         ConnectFour c = new ConnectFour();
-        assertFalse(c.checkHorizontal("R"));
+        assertFalse(c.checkColumns("R"));
 
         c.addToken(0,"R");
-        assertFalse(c.checkHorizontal("R"));
+        assertFalse(c.checkColumns("R"));
         c.addToken(0,"R");
-        assertFalse(c.checkHorizontal("R"));
+        assertFalse(c.checkColumns("R"));
         c.addToken(0,"R");
-        assertFalse(c.checkHorizontal("R"));
+        assertFalse(c.checkColumns("R"));
         c.addToken(0,"R");
-        assertTrue(c.checkHorizontal("R"));
+        assertTrue(c.checkColumns("R"));
 
         c = new ConnectFour();
-        assertFalse(c.checkHorizontal("B"));
+        assertFalse(c.checkColumns("B"));
 
         c.addToken(1,"B");
-        assertFalse(c.checkHorizontal("B"));
+        assertFalse(c.checkColumns("B"));
         c.addToken(1,"B");
-        assertFalse(c.checkHorizontal("B"));
+        assertFalse(c.checkColumns("B"));
         c.addToken(1,"B");
-        assertFalse(c.checkHorizontal("B"));
+        assertFalse(c.checkColumns("B"));
         c.addToken(1,"B");
-        assertTrue(c.checkHorizontal("B"));
+        assertTrue(c.checkColumns("B"));
     }
 
     @Test

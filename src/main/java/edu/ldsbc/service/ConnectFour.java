@@ -1,6 +1,5 @@
 package edu.ldsbc.service;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -45,18 +44,35 @@ public class ConnectFour {
     //do we have a winner
     public boolean haveWinner(String color)
     {
-        return checkHorizontal(color) || checkVertical(color) || checkDiagonal(color);
+        return checkColumns(color) || checkRows(color) || checkDiagonal(color);
     }
 
     boolean checkDiagonal(String color) {
         return false;
     }
 
-    boolean checkVertical(String color) {
-        return false;
+    boolean checkRows(String color) {
+        boolean result = false;
+        //get a row
+        for (int i = 0; i < 6 ; i++) {
+            String row = getRow(i);
+            result = result | checkRow(row,color);
+        }
+        return result;
     }
 
-    boolean checkHorizontal(String color) {
+    boolean checkRow(String row, String color) {
+        return row.contains(color+color+color+color);
+    }
+
+
+    String getRow(int i) {
+
+          String  row = grid[0][i]+ grid[1][i] + grid[2][i]+ grid[3][i]+ grid[4][i]+ grid[5][i]+ grid[6][i];
+          return row;
+    }
+
+    boolean checkColumns(String color) {
         boolean result = checkOneColumn(0, color);
                 result = result | checkOneColumn(1, color);
                 result = result | checkOneColumn(2, color);
